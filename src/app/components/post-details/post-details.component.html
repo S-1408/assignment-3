@@ -1,0 +1,14 @@
+<div class="card mt-5" *ngIf="postDetail">
+  <div class="card-header">
+    <p class="text-center">Title</p>
+  </div>
+  <div class="card-body text-center">
+    <p class="text-center">{{ postDetail.title | titlecase }}</p>
+    <br />
+
+    <!-- <img class="image-holder" height="100px"width="100px" [src]="getSantizeUrl(postDetail.image)" /> -->
+    <button type="button" (click)="deletePost()" class="btn btn-danger">
+      delete
+    </button>
+  </div>
+</div>

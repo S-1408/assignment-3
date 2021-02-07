@@ -1,0 +1,11 @@
+
+ul li{
+  list-style: none;
+  display: block;
+  border: 1px solid gray;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid red;
+  cursor: pointer;
+}
+
