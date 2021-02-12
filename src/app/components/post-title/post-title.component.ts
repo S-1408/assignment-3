@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { ImageService } from './../../services/image.service';
 import { NgForm } from '@angular/forms';
+import { filter, map } from 'rxjs/operators';
 
 
 interface Data {
@@ -28,11 +29,14 @@ export class PostTitleComponent implements OnInit {
 
   imageUrl: string = "";
   fileToUpload!: any;
-
-  constructor(private imageService: ImageService) {}
+items:any[]=[]
+  constructor(private imageService: ImageService) {
+    // console.log(NaN=NaN);
+  }
 
   ngOnInit(): void {
     this.getImageTitle();
+
   }
 
   // get Post list using image-service
@@ -41,9 +45,13 @@ export class PostTitleComponent implements OnInit {
       //console.log(res);
       this.images = res;
       this.images2 = this.images.filter((i) => i.userId == 1 && i.id <= 8);
-      //console.log(this.images2);
+      // console.log(this.images2);
+
+
     });
   }
+
+
 
 // this method use to show details of list on clicking particular row
   RowSelected(u: any, index: number) {
@@ -79,7 +87,7 @@ export class PostTitleComponent implements OnInit {
   }
 
   // use to upload image file
-  upload(file: FileList){
+  upload(file: FileList  ){
 
     this.fileToUpload = file.item(0);
     var reader = new FileReader();
@@ -88,6 +96,7 @@ export class PostTitleComponent implements OnInit {
       }
       reader.readAsDataURL(this.fileToUpload);
     }
+
 
     }
 

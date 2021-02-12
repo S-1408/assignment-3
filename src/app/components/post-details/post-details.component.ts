@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 import { ImageService } from 'src/app/services/image.service';
+import { Image } from './../../image';
 
 @Component({
   selector: 'app-post-details',
@@ -11,9 +12,11 @@ import { ImageService } from 'src/app/services/image.service';
 export class PostDetailsComponent implements OnInit {
   title: any;
   postDetail: any;
-
+  image:any;
   constructor(private imageService: ImageService,
-    public _sanitizer: DomSanitizer) {}
+    public sanitizer: DomSanitizer) {
+      this.image = sanitizer.bypassSecurityTrustUrl(this.image );
+    }
 // here I used output decorator to delete details card and list of title in the child component.
   @Output() emitPost: EventEmitter<any> = new EventEmitter();
 
@@ -22,15 +25,13 @@ export class PostDetailsComponent implements OnInit {
     //here I used BehaviorSubject to get response  in unrelated components
     this.imageService.postDetailSubscription.subscribe((res) => {
       this.postDetail = res;
-     // console.log(this.postDetail);
+     console.log(this.postDetail);
 
-    });
+     })
+
+
   }
 
-  // I used this method  to santize the image url but it not working
-  public getSantizeUrl(url:string): SafeUrl {
-    return this._sanitizer.bypassSecurityTrustUrl(url);
-  }
 
 
 // here I used this method to delete details and list using event emitter.

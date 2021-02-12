@@ -5,8 +5,8 @@
   <div class="card-body text-center">
     <p class="text-center">{{ postDetail.title | titlecase }}</p>
     <br />
+    <!-- <img  width="50%" *ngIf="image"  [src]="postDetail.image" class="image"> -->
 
-    <!-- <img class="image-holder" height="100px"width="100px" [src]="getSantizeUrl(postDetail.image)" /> -->
     <button type="button" (click)="deletePost()" class="btn btn-danger">
       delete
     </button>
